@@ -57,25 +57,25 @@
 
 
 
-const express=require("express")
-const app=express();
-const PORT=3000;
-app.use(express.json())   // load a page without using body parser
-app.get("/",(req,res)=>{
-    console.log("home");
-    res.send("hello world")
-})
-app.get("/about/:id",(res,req)=>{
-    const {id}=req.params
-        console.log(id);
-        res.status(201).send("About")
+// const express=require("express")
+// const app=express();
+// const PORT=3000;
+// app.use(express.json())   // load a page without using body parser
+// app.get("/",(req,res)=>{
+//     console.log("home");
+//     res.send("hello world")
+// })
+// app.get("/about/:id",(res,req)=>{
+//     const {id}=req.params
+//         console.log(id);
+//         res.status(201).send("About")
         
-})
+// })
 
-app.listen(PORT,()=>{
-    console.log(`server started at http://localhost:${PORT}`);
+// app.listen(PORT,()=>{
+//     console.log(`server started at http://localhost:${PORT}`);
     
-})
+// })
 
 // const express=require("express")
 // const app=express();
@@ -123,26 +123,24 @@ app.listen(PORT,()=>{
 // })
 
 
-// import express  from "express";
-// import connection from "./connection.js";
-// import env from "dotenv";
-// env.config();
+import express from "express";
+import connection from "./connection.js";
+import env from "dotenv";
+import router from './router.js'
+env.config();
 
-// const app=express();
+const app=express();
 
-// app.get("/",(req,res)=>{
-    
-//     res.send("hello worldz")
-// });
-// connection()
-// .then(()=>{
-//     app.listen(process.env.PORT,()=>{
-//         console.log("server started");
+app.use("/api",router)
+connection()
+.then(()=>{
+    app.listen(process.env.PORT,()=>{
+        console.log("server started");
         
-//     });
-// })
-// .catch((error)=>{
-//     console.log(error);
+    });
+})
+.catch((error)=>{
+    console.log(error);
     
-// })
+})
 
